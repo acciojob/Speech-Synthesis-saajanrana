@@ -35,42 +35,7 @@
   const options = document.querySelectorAll('[type="range"], [name="text"]');
   const speakButton = document.querySelector('#speak');
   const stopButton = document.querySelector('#stop');
-const populateVoiceList = () => {
-        voices = synth.getVoices();
-        voices.forEach((voice) => {
-          const option = document.createElement('option');
-          option.textContent = voice.name + ' (' + voice.lang + ')';
-          option.setAttribute('data-lang', voice.lang);
-          option.setAttribute('data-name', voice.name);
-          voiceSelect.appendChild(option);
-        });
-        voiceSelect.selectedIndex = 0;
-      }
 
-      populateVoiceList();
-
-      if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.onvoiceschanged = populateVoiceList;
-      }
-
-      const speakText = () => {
-        const utterance = new SpeechSynthesisUtterance(document.querySelector('#text-input').value);
-        const selectedVoice = voiceSelect.selectedOptions[0].getAttribute('data-name');
-        voices.forEach((voice) => {
-          if (voice.name === selectedVoice) {
-            utterance.voice = voice;
-          }
-        });
-        utterance.rate = rateInput.value;
-        utterance.pitch = pitchInput.value;
-        synth.speak(utterance);
-      }
-
-      startButton.addEventListener('click', speakText);
-
-      stopButton.addEventListener('click', () => {
-        synth.cancel();
-      });
   //Your code goes here
 </script>
 
